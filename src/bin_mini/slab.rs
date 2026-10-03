@@ -93,7 +93,10 @@ impl<T, const N: usize> Slab<T, N> {
         // without checking if val is occupied or not
         match mem::replace( &mut self.buf[index], Entry::Vacant(index+1)) {
             Entry::Vacant(_) => None,
-            Entry::Occupied(val) => Some(val),
+            Entry::Occupied(val) => {
+                self.head = index;
+                Some(val)
+            }
         }
     }
 
@@ -101,7 +104,7 @@ impl<T, const N: usize> Slab<T, N> {
     ///
     /// Returns `None` if the entry is vacant.
     pub fn get(&self, index: usize) -> Option<&T> {
-        match self.buf[index] {
+        match &self.buf[index] {
             Entry::Occupied(val) => Some(val),
             Entry::Vacant(_) => None
         }
@@ -111,7 +114,10 @@ impl<T, const N: usize> Slab<T, N> {
     ///
     /// Returns `None` if the entry is vacant.
     pub fn get_mut(&mut self, index: usize) -> Option<&mut T> {
-        todo!()
+        match &mut self.buf[index] {
+            Entry::Occupied(val) => Some(val),
+            Entry::Vacant(_) => None
+        }
     }
 }
 
