@@ -69,13 +69,16 @@ impl<T, const N: usize> Slab<T, N> {
         if self.head == N {
             return Err(item)
         } 
+        let Entry::Vacant(next) = self.buf[self.head] else {
+            panic!("head must be vacant");
+        };
         // Not sure is there is a better way to do this.
         // but from this implementation, when we remove
         // elements inbetween from index, the index is
         // usedd to update the head at that position and 
         // futuer updates will override any Occupied elements.
         self.buf[self.head] = Entry::Occupied(item);
-        self.head += 1;
+        self.head += next;
         Ok(self.head-1)
     }
 

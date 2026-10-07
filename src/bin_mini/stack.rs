@@ -121,6 +121,7 @@ mod test_stack {
         assert_eq!(None, stack.pop());
     }
 
+    // NOTE: we have to get the correct panic time here
     #[should_panic(expected="index out of bounds")]
     #[test]
     fn test_push_overflow() {
