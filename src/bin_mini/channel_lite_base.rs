@@ -44,11 +44,11 @@ impl ChannelMonitor {
         match event {
             Event::NewSubscriber(name) => {
                 let msg = format!("New sub: {}", name);
-                // self.send(sender, msg); // to fix
+                // self.send(sender, msg); // to fix. This will panic
             }
             Event::NewComment(comment) => {
                 let msg = format!("Comment: {}", comment);
-                // self.send(sender, msg); // to fix
+                // self.send(sender, msg); // to fix. This will panic
             }
         }
     }
@@ -78,7 +78,7 @@ pub enum Event {
 }
 
 #[test]
-#[should_panic]
+#[should_panic]  // NOTE: We have to remove this should_panic and try to make the tests pass.
 fn test() {
     use std::sync::mpsc;
 
