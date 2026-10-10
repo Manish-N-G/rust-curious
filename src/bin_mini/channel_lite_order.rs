@@ -27,15 +27,14 @@ impl ChannelMonitor {
     // allocates string before check. not ideal
     // but it works
     pub fn handle_event(&mut self, event: Event) {
-        let msg = match event {
+        match event {
             Event::NewSubscriber(name) => {
-                format!("New sub: {}", name)
+                self.send( format!("New sub: {}", name) );
             }
             Event::NewComment(comment) => {
-                format!("Comment: {}", comment)
+                self.send( format!("Comment: {}", comment) );
             }
         };
-        self.send(msg);
     }
 
     fn send(&mut self, msg: String) {
