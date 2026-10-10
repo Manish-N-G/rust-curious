@@ -9,3 +9,7 @@ mod channel_lite_base;
 mod channel_lite_order;
 mod channel_lite_area;
 mod channel_lite_layout;
+mod channel_pro_base;
+mod channel_pro_order;
+mod channel_pro_area;
+mod channel_pro_layout;
