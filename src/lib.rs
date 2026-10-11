@@ -1,1 +1,1 @@
-mod bin_mini;
+mod lib_mini;
