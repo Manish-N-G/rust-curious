@@ -24,6 +24,7 @@ fn reborrow() -> i32 {
 
 
 #[allow(clippy::needless_lifetimes)]
+// technically this is val: &'x mut *i32 g
 fn reborrow_value<'x>(val: &'x mut i32) -> &'x mut i32 {
     val
 }
