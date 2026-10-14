@@ -10,6 +10,7 @@ There can be a lot of confusion with some of rusts' approach to implementing cer
 - Arrays and Slices
 - Generics and monomorphization
 - Traits
+- Lifetimes
 - More coming soon.
 
 Its best to look at the comments to have a look on how these examples and binaries tackle these tricky concepts and how to overcome them.
